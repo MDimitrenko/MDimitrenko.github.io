@@ -1,7 +1,7 @@
 it('remove it', () => {
   expect(true).toBe(true);
 });
-import {getNumberedArray, toStringArray, transformCustomers} from './1_base';
+import { getNumberedArray, toStringArray, transformCustomers } from './1_base';
 
 describe('all', () => {
   it('transformCustomers', () => {
@@ -35,14 +35,14 @@ describe('all', () => {
   });
 
   it('toStringArray', () => {
-    const values = [{ number: 0, value: 1 },
+    const values = [
+      { number: 0, value: 1 },
       { number: 1, value: 2 },
       { number: 2, value: 4 },
       { number: 3, value: 5 },
-      { number: 4, value: 7 }];
+      { number: 4, value: 7 },
+    ];
 
-    expect(toStringArray(values)).toEqual([
-      '1_0', '2_1', '4_2', '5_3', '7_4'
-    ]);
+    expect(toStringArray(values)).toEqual(['1_0', '2_1', '4_2', '5_3', '7_4']);
   });
 });
