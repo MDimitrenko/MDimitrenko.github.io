@@ -32,7 +32,7 @@
 //   percent: number;
 // };
 //
-// // Здесь, возможно, нужно использовать as, а также в switch передавать немного по-другому
+// // Здесь, возможно, нужно использовать as, возможно в switch передавать немного по-другому
 // const getDataAmount = (data: Data): number => {
 //   switch (data.type) {
 //     case 'Money':
@@ -40,7 +40,7 @@
 //
 //     default: {
 //       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-//       const unhandled: never = data; // здесь, возможно, нужно использовать нечто другое
+//       const unhandled: never = data; // здесь, возможно, нужно использовать нечто другое. :never должен остаться
 //       throw new Error(`unknown type: ${data.type}`);
 //     }
 //   }

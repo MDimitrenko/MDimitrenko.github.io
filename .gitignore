@@ -130,3 +130,4 @@ dist
 
 .idea
 .jest
+storybook-static
