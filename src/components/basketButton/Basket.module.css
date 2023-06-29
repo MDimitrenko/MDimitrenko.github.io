@@ -1,0 +1,21 @@
+.in-basket1 {
+    background-color: #e313bf;
+    border-color: #e313bf;
+    font-weight: 600;
+    letter-spacing: 0;
+    text-decoration: none;
+    text-align: center;
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    border-radius: 8px;
+    cursor: pointer;
+    color: #fff;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 3px 16px 5px;
+}
+.in-basket1:hover {
+    background-color: #cb11ab;
+    border: 2px solid #cb11ab;
+}
