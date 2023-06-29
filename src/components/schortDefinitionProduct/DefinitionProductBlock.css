@@ -1,0 +1,13 @@
+.definition-product-block__root-div {
+  border: 1px solid black;
+  border-radius: 0 10px;
+  width: 400px;
+  padding: 15px;
+  box-shadow: 10px 5px 5px #4995aa;
+}
+
+.definition-product-block__image-div {
+  width: 50px;
+  display: inline-block;
+  margin: 5px;
+}
