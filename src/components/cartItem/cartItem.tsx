@@ -8,6 +8,8 @@ const ItemContainer = styled.div`
   border: 1px solid #ccc;
   border-radius: 8px;
   margin-bottom: 8px;
+  font-family: system, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Segoe WP', Roboto, Ubuntu, Oxygen, Cantarell,
+    'Fira Sans', 'Helvetica Neue', Helvetica, 'Lucida Grande', 'Droid Sans', Tahoma, 'Microsoft Sans Serif', sans-serif;
 `;
 
 const ItemImage = styled.img`
@@ -15,6 +17,7 @@ const ItemImage = styled.img`
   height: 80px;
   border-radius: 8px;
   margin-right: 16px;
+  object-fit: cover;
 `;
 
 const ItemContent = styled.div`

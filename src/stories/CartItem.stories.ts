@@ -19,6 +19,7 @@ export const Default = {
     description:
       'Lightweight Casual Laptop Backpack with USB Charging Port For for Men and Women, Daily use backpack, Backpack for gym (Full Black)',
     price: 19.99,
-    imageSrc: 'https://drive.google.com/file/d/15oCY76lrNr7KeWGsw-buoRFXqNivNtlz',
+    imageSrc:
+      'https://media.wired.com/photos/6452efd60b67c709cbcaa75b/2:3/w_818,h_1227,c_limit/Jumper-Photo_Red_Front_18c2a0e2-5a49-4afe-83d3-04d2e31328a9_1296x.png',
   },
 };
