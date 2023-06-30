@@ -53,33 +53,51 @@ module.exports = (_, args) => {
           ],
         },
         {
-          test: /\.css$/,
-          use: [
-            {
-              loader: MiniCssExtractPlugin.loader,
-            },
-            'css-loader',
-          ],
-        },
-        {
           test: /\.svg/,
           type: 'asset/inline',
         },
         {
+          test: /\.(png|jpg|jpeg|gif)$/i,
+          type: 'asset/resource',
+        },
+        {
           test: /\.s[ac]ss$/i,
           use: [
+            // MiniCssExtractPlugin.loader,
+            "style-loader",
             {
-              loader: MiniCssExtractPlugin.loader,
-            },
-            {
-              loader: 'css-loader',
+              loader: "css-loader",
               options: {
                 modules: {
                   localIdentName: '[name]_[local]-[hash:base64:5]',
                 },
               },
             },
-            'sass-loader',
+            "sass-loader"
+          ],
+        },
+        {
+          test: /\.css$/i,
+          use: [
+            // MiniCssExtractPlugin.loader, // использовать вместо style-loader
+            "style-loader",
+            "css-loader"
+          ],
+          exclude: /\.module\.css$/,
+        },
+        {
+          test: /\.module\.css$/i,
+          use: [
+            // MiniCssExtractPlugin.loader, // использовать вместо style-loader
+            "style-loader",
+            {
+              loader: "css-loader",
+              options: {
+                modules: {
+                  localIdentName: '[name]_[local]-[hash:base64:5]',
+                },
+              },
+            }
           ],
         },
       ],
