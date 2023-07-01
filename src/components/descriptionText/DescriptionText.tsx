@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { FC } from 'react';
 import './DescriptionText.css';
 // eslint-disable-next-line react/prop-types
-export default function BasketText({ text, size = '', bold = false }) {
+interface DescriptionTextProps {
+  text: string;
+  size?: string;
+  bold?: boolean;
+}
+
+export const DescriptionText: FC<DescriptionTextProps> = ({ text, size = '', bold = false }) => {
   const className =
     'description-text ' +
     (size ? 'description-text__text___' + size : '') +
@@ -12,4 +18,4 @@ export default function BasketText({ text, size = '', bold = false }) {
       <label className={className}>{text}</label>
     </div>
   );
-}
+};

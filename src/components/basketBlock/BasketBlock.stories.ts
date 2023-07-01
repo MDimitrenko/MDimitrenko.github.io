@@ -1,5 +1,5 @@
 
-import BasketBlock from './BasketBlock';
+import {BasketBlock} from './BasketBlock';
 
 export default {
   component: BasketBlock,

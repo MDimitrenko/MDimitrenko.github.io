@@ -1,5 +1,5 @@
 
-import DefinitionProductBlock from './DefinitionProductBlock';
+import {DefinitionProductBlock} from './DefinitionProductBlock';
 
 export default {
   component: DefinitionProductBlock,
