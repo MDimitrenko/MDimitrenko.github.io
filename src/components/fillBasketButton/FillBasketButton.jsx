@@ -6,9 +6,9 @@ import './FillBasketButton.css';
 export default function FillBasketButton({ counter }) {
   return (
     <div className="fill-basket-button">
-      <BasketButton name="-" />
-      <BasketText name={counter} />
-      <BasketButton name="+" />
+      <BasketButton text="-" />
+      <BasketText text={counter} />
+      <BasketButton text="+" />
     </div>
   );
 }

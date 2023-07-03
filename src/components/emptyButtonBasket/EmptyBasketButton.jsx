@@ -4,7 +4,7 @@ import BasketButton from '../basketButton/BasketButton';
 export default function EmptyBasketButton() {
   return (
     <div className="basket-block__div">
-      <BasketButton name="В корзину" />
+      <BasketButton text="В корзину" />
     </div>
   );
 }

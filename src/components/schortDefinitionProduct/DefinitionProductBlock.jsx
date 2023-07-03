@@ -19,11 +19,11 @@ export default function DefinitionProductBlock({ amount, images = [], name, cate
       <span>{imagesList}</span>
       <AmountText amount={amount} />
       <hr />
-      <DescriptionText size="big" bold="true" name={name} />
-      <DescriptionText size="x-small" name={category} />
-      <DescriptionText size="big" bold="true" name="О товаре" />
+      <DescriptionText size="big" bold="true" text={name} />
+      <DescriptionText size="x-small" text={category} />
+      <DescriptionText size="big" bold="true" text="О товаре" />
 
-      <DescriptionText size="medium" name={definition} />
+      <DescriptionText size="medium" text={definition} />
 
       <BasketBlock />
     </div>
