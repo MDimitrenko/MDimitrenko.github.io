@@ -1,15 +1,16 @@
-import ShortDefinitionProductBlock from './ShortDefinitionProductBlock';
+import { ShortDefinitionProductBlock } from './ShortDefinitionProductBlock';
 
 export default {
   component: ShortDefinitionProductBlock,
   title: 'ShortDefinitionProductBlock',
   tags: ['autodocs'],
 };
+
 export const ProductBlock = {
   args: {
     amount: 555,
     image: 'wiskas.jpg',
-    name: 'Корм для кошек',
+    nameProduct: 'Корм для кошек',
     shortDefinition: 'Влажный корм для кошек, с курицей. 75 г',
   },
-}
+};

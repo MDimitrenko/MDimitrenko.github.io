@@ -1,10 +1,10 @@
-import React from 'react';
-import BasketButton from '../basketButton/BasketButton';
+import React, { FC } from 'react';
+import { BasketButton } from '../basketButton/BasketButton';
 // eslint-disable-next-line react/prop-types
-export default function EmptyBasketButton() {
+export const EmptyBasketButton: FC = () => {
   return (
     <div className="basket-block__div">
       <BasketButton text="В корзину" />
     </div>
   );
-}
+};
