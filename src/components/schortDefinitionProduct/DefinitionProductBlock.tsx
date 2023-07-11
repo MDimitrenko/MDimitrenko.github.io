@@ -1,11 +1,19 @@
-import React from 'react';
-import AmountText from '../amountText/AmountText';
-import ProductImage from '../productImage/ProductImage';
+import React, { FC } from 'react';
+import { AmountText } from '../amountText/AmountText';
+import { ProductImage } from '../productImage/ProductImage';
 import './DefinitionProductBlock.css';
-import DescriptionText from '../descriptionText/DescriptionText';
-import BasketBlock from '../basketBlock/BasketBlock';
-// eslint-disable-next-line react/prop-types
-export default function DefinitionProductBlock({ amount, images = [], name, category, definition }) {
+import { DescriptionText } from '../descriptionText/DescriptionText';
+import { BasketBlock } from '../basketBlock/BasketBlock';
+
+interface DefinitionProps {
+  amount: number;
+  images: string[];
+  nameProduct: string;
+  category: string;
+  definition: string;
+}
+
+export const DefinitionProductBlock: FC<DefinitionProps> = ({ amount, images, nameProduct, category, definition }) => {
   // eslint-disable-next-line react/prop-types
   const imagesList = images.map((img) => (
     // eslint-disable-next-line react/jsx-key
@@ -19,7 +27,7 @@ export default function DefinitionProductBlock({ amount, images = [], name, cate
       <span>{imagesList}</span>
       <AmountText amount={amount} />
       <hr />
-      <DescriptionText size="big" bold="true" text={name} />
+      <DescriptionText size="big" bold="true" text={nameProduct} />
       <DescriptionText size="x-small" text={category} />
       <DescriptionText size="big" bold="true" text="О товаре" />
 
@@ -28,4 +36,4 @@ export default function DefinitionProductBlock({ amount, images = [], name, cate
       <BasketBlock />
     </div>
   );
-}
+};
