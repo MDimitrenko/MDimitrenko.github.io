@@ -3,7 +3,7 @@ import './Header.css';
 import Logo from '../Logo/Logo';
 
 type HeaderProps = {
-    children?: React.ReactElement;
+    children?: React.ReactNode;
 };
 
 const Header = ({children}: HeaderProps) => {
