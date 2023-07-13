@@ -54,17 +54,22 @@ const CloseButton = styled.button`
 interface ModalProps {
   visible: boolean;
   children: React.ReactNode;
+  onClose: () => void;
 }
 
-const Modal: React.FC<ModalProps> = ({ visible, children }) => {
+const Modal: React.FC<ModalProps> = ({ visible, onClose, children }) => {
   if (!visible) return null;
+
+  const handleClose = () => {
+    onClose();
+  };
 
   return (
     <ModalContainer>
       <Mask />
       <Window>
         {children}
-        <CloseButton>Close</CloseButton>
+        <CloseButton onClick={handleClose}>Close</CloseButton>
       </Window>
     </ModalContainer>
   );
