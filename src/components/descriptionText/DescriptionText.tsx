@@ -4,14 +4,14 @@ import './DescriptionText.css';
 interface DescriptionTextProps {
   text: string;
   size?: string;
-  bold?: boolean;
+  bold?: string;
 }
 
-export const DescriptionText: FC<DescriptionTextProps> = ({ text, size = '', bold = false }) => {
+export const DescriptionText: FC<DescriptionTextProps> = ({ text, size = '', bold = 'false' }) => {
   const className =
     'description-text ' +
     (size ? 'description-text__text___' + size : '') +
-    (bold ? ' description-text__text___bold' : '');
+    (bold === 'true' ? ' description-text__text___bold' : '');
 
   return (
     <div>

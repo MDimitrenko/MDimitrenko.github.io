@@ -30,3 +30,16 @@
     horiz-align: right;
     margin-right: auto;
 }
+
+.in-basket__disabled {
+    background-color: #6595aa;
+    border: 2px solid #6595aa;
+}
+
+.in-basket__left-button {
+    border-radius: 8px 0px 0px 8px;
+}
+
+.in-basket__right-button {
+    border-radius: 0px 8px 8px 0px;
+}

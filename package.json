@@ -63,8 +63,10 @@
   },
   "dependencies": {
     "clsx": "^1.2.1",
+    "i18next": "^23.2.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-i18next": "^13.0.2",
     "styled-components": "^6.0.1"
   }
 }

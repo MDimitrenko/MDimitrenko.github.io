@@ -1,10 +1,11 @@
-import React from "react"
+import React from 'react';
 import './Logo.css';
+import { useTranslation } from 'react-i18next';
+import cn from 'clsx';
 
 const Logo = () => {
-    return (
-        <div className="logo"></div>
-    )
-}
+  const { t, i18n } = useTranslation();
+  return <div className={cn('logo', i18n.language)}></div>;
+};
 
-export default Logo
+export default Logo;
