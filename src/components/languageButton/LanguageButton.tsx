@@ -3,7 +3,7 @@ import { BasketButton } from '../basketButton/BasketButton';
 // eslint-disable-next-line import/no-unresolved
 import '../../i18n';
 import { useTranslation } from 'react-i18next';
-import './LanguageButton.css';
+import s from './LanguageButton.sass';
 
 // eslint-disable-next-line react/prop-types
 export const LanguageButton: FC = () => {
@@ -12,7 +12,7 @@ export const LanguageButton: FC = () => {
   const ruStyle = 'in-basket__left-button ' + lngStyle('ru');
   const enStyle = 'in-basket__right-button ' + lngStyle('en');
   return (
-    <div className='language-button'>
+    <div className={s.language_button}>
       <BasketButton className={ruStyle} text={t('language.ru')} onClick={() => i18n.changeLanguage('ru')} />
       <BasketButton className={enStyle} text={t('language.en')} onClick={() => i18n.changeLanguage('en')} />
     </div>

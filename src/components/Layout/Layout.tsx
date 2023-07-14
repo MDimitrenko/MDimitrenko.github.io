@@ -1,5 +1,5 @@
 import React from "react"
-import './Layout.css';
+import s from './Layout.sass';
 import Header from '../Header/Header';
 import {useTranslation} from "react-i18next";
 
@@ -11,14 +11,17 @@ const Layout = ({children}: LayoutProps) => {
     const { t } = useTranslation();
     return (
         <>
-            <div className='layout'>
+            <div className={s.layout}>
                 <Header>
                     {children}
                 </Header>
+                {/* <div className={s.content}>
+                    <p>
+                        {t('description')}
+                    </p>
+                </div> */}
+
             </div>
-            <p>
-                {t('description')}
-            </p>
          </>
     )
 }
