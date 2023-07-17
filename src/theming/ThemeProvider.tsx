@@ -1,6 +1,6 @@
 import React, { createContext, FC, useCallback, useContext, useInsertionEffect, useState, useMemo } from 'react';
 import { ConfigProvider, theme as antdTheme } from 'antd';
-import vars from 'src/styles/common.scss';
+import vars from '../styles/common.scss';
 import { ThemeConfig } from 'antd/es/config-provider/context';
 import { Theme } from './types';
 import s from './ThemeProvider.sass';
