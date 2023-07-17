@@ -15,11 +15,11 @@ const Layout = ({children}: LayoutProps) => {
                 <Header>
                     {children}
                 </Header>
-                {/* <div className={s.content}>
+                <div className={s.content}>
                     <p>
                         {t('description')}
                     </p>
-                </div> */}
+                </div>
 
             </div>
          </>
