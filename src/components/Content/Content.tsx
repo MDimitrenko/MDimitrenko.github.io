@@ -1,5 +1,5 @@
 import React from "react"
-import s from './Content.sass';
+import s from './Content.module.sass';
 
 type ContentProps = {
     children?: React.ReactNode;

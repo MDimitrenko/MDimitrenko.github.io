@@ -1,5 +1,5 @@
 import React from "react"
-import s from './Layout.sass';
+import s from './Layout.module.sass';
 import Header from '../Header/Header';
 import {useTranslation} from "react-i18next";
 

@@ -3,7 +3,7 @@ import { BasketButton } from '../basketButton/BasketButton';
 // eslint-disable-next-line import/no-unresolved
 import '../../i18n';
 import { useTranslation } from 'react-i18next';
-import s from './LanguageButton.sass';
+import s from './LanguageButton.module.sass';
 
 // eslint-disable-next-line react/prop-types
 export const LanguageButton: FC = () => {

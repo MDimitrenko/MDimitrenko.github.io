@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './Logo.sass';
+import s from './Logo.module.sass';
 import { useTranslation } from 'react-i18next';
 
 const Logo = () => {

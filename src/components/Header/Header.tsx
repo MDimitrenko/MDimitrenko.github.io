@@ -1,5 +1,5 @@
 import React, { useRef, useLayoutEffect } from 'react';
-import s from './Header.sass';
+import s from './Header.module.sass';
 import Logo from '../Logo/Logo';
 import { LanguageButton } from '../languageButton/LanguageButton';
 import { ThemeSwitcher } from '../ThemeSwitcher';

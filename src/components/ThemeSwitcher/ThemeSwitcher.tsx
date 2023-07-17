@@ -5,7 +5,7 @@ import cn from 'clsx';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import { useThemeContext, Theme } from '../../theming';
-import s from './ThemeSwitcher.sass';
+import s from './ThemeSwitcher.module.sass';
 
 export type ThemeSwitcherProps = {
   className?: string;

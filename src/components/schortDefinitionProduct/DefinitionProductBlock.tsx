@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { AmountText } from '../amountText/AmountText';
 import { ProductImage } from '../productImage/ProductImage';
-import s from './DefinitionProductBlock.sass';
+import s from './DefinitionProductBlock.module.sass';
 import { DescriptionText } from '../descriptionText/DescriptionText';
 import { BasketBlock } from '../basketBlock/BasketBlock';
 import { useTranslation } from 'react-i18next';
