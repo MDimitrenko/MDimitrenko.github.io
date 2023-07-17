@@ -1,25 +1,33 @@
-const config = {
-  stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|ts|tsx)"],
-  addons: [
-    "@storybook/addon-links",
-    "@storybook/addon-essentials",
-    {
-      name: '@storybook/addon-styling',
-      options: {
-        sass: {
-          // Require your Sass preprocessor here
-          implementation: require('sass'),
-        },
-      },
-    },
-    "@storybook/addon-interactions",
-  ],
+const path = require('path');
+
+module.exports = {
+  stories: ['../src//*.mdx', '../src//*.stories.@(js|jsx|ts|tsx)'],
+  addons: ['@storybook/addon-links', '@storybook/addon-essentials', '@storybook/addon-interactions'],
   framework: {
-    name: "@storybook/react-webpack5",
+    name: '@storybook/react-webpack5',
     options: {},
   },
   docs: {
-    autodocs: "tag",
+    autodocs: 'tag',
+  },
+  // Other Storybook configuration options...
+  webpackFinal: async (config) => {
+    config.module?.rules?.push({
+      test: /\.s[ac]ss$/,
+      use: [
+        'style-loader',
+        {
+          loader: 'css-loader',
+          options: {
+            modules: {
+              auto: (resPath: string) => Boolean(resPath.includes('.module.')),
+              localIdentName: '[path][name]__[local]--[hash:base64:5]'
+            }
+          }
+        },
+        'sass-loader'
+      ]
+    });
+    return config;
   },
 };
-export default config;
