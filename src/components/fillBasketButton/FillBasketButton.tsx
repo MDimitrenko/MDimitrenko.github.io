@@ -10,7 +10,7 @@ export const FillBasketButton: FC<FillBasketButtonProps> = ({ counter }) => {
   return (
     <div className="fill-basket-button">
       <BasketButton text="-" />
-      <BasketText text={counter} />
+      <BasketText text={counter.toString()} />
       <BasketButton text="+" />
     </div>
   );
