@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { AmountText } from '../amountText/AmountText';
 import { ProductImage } from '../productImage/ProductImage';
-import s from './DefinitionProductBlock.module.sass';
+import './DefinitionProductBlock.css';
 import { DescriptionText } from '../descriptionText/DescriptionText';
 import { BasketBlock } from '../basketBlock/BasketBlock';
 import { useTranslation } from 'react-i18next';
@@ -19,12 +19,12 @@ export const DefinitionProductBlock: FC<DefinitionProps> = ({ amount, images, na
   const { t } = useTranslation();
   const imagesList = images.map((img) => (
     // eslint-disable-next-line react/jsx-key
-    <div className={s.definition_product_block__image_div}>
+    <div className="definition_product_block__image_div">
       <ProductImage image={img} />
     </div>
   ));
   return (
-    <div className={s.definition_product_block__root_div}>
+    <div className="definition_product_block__root_div">
       <ProductImage image={images[0]} />
       <span>{imagesList}</span>
       <AmountText amount={amount} />

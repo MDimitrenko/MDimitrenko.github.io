@@ -8,6 +8,7 @@ export default {
 
 export const ProductBlock = {
   args: {
+    id: 1,
     amount: 555,
     image: 'wiskas.jpg',
     nameProduct: 'Корм для кошек',
