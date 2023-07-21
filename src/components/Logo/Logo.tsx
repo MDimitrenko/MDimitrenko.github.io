@@ -3,7 +3,7 @@ import s from './Logo.module.sass';
 import { useTranslation } from 'react-i18next';
 
 const Logo = () => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   return (
     <div className={s.logo_wrapper}>
       <div className={s.logo}></div>

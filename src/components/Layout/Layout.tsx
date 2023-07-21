@@ -10,19 +10,16 @@ type LayoutProps = {
 const Layout = ({children}: LayoutProps) => {
     const { t } = useTranslation();
     return (
-        <>
-            <div className={s.layout}>
-                <Header>
-                    {children}
-                </Header>
-                <div className={s.content}>
-                    <p>
-                        {t('description')}
-                    </p>
-                </div>
-
+        <div className={s.layout}>
+            <Header>
+                {children}
+            </Header>
+            <div className={s.content}>
+                <p>
+                    {/* {t('description')} */}
+                </p>
             </div>
-         </>
+        </div>
     )
 }
 
