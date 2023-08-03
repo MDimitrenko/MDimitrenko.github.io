@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 
 const ModalContainer = styled.div`
@@ -58,20 +59,37 @@ interface ModalProps {
 }
 
 const Modal: React.FC<ModalProps> = ({ visible, onClose, children }) => {
-  if (!visible) return null;
+  useEffect(() => {
+    if (visible) {
+      const modalRoot = document.getElementById('modal-root');
+      if (!modalRoot) return;
+
+      const modalElement = document.createElement('div');
+      modalRoot.appendChild(modalElement);
+
+      return () => {
+        modalRoot.removeChild(modalElement);
+      };
+    }
+  }, [visible]);
+
+  if (!visible) {
+    return null;
+  }
 
   const handleClose = () => {
     onClose();
   };
 
-  return (
+  return ReactDOM.createPortal(
     <ModalContainer>
       <Mask />
       <Window>
         {children}
         <CloseButton onClick={handleClose}>Close</CloseButton>
       </Window>
-    </ModalContainer>
+    </ModalContainer>,
+    document.getElementById('modal-root') || document.body
   );
 };
 

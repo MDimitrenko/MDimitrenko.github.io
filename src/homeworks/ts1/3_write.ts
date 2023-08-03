@@ -8,7 +8,7 @@ type Category = {
   photo?: string;
 };
 
-type Product = {
+export type Product = {
   id: string;
   name: string;
   photo: string;
@@ -58,6 +58,11 @@ export const getRandomString = (): string => {
   return outString;
 };
 
+export const getRandomPhoto = (): string => {
+  const photos: string[] = ['wiskas.jpg', 'wiskas1.jpg', 'wiskas2.jpg'];
+  return photos[generateRandomNumber(0, 2)];
+};
+
 export const createRandomProduct = (createdAt: string): Product => {
   const brand = brands[generateRandomNumber(0, 6)];
   const weight = weights[generateRandomNumber(0, 5)];
@@ -65,7 +70,7 @@ export const createRandomProduct = (createdAt: string): Product => {
   return {
     id: getRandomString(),
     name: brand + ' ' + weight,
-    photo: getRandomString(),
+    photo: getRandomPhoto(),
     desc: generateRandomNumber(0, 10) < 5 ? currentCategory.name + ' ' + brand + ', ' + weight : undefined,
     createdAt: createdAt,
     oldPrice: generateRandomNumber(0, 10) < 5 ? generateRandomNumber(1, 1000) : undefined,

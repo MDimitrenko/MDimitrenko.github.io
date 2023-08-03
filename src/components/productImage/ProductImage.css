@@ -3,3 +3,7 @@
     max-height: 100%;
     height: auto;
 }
+
+.product-image__div {
+    height: 250px;
+}
