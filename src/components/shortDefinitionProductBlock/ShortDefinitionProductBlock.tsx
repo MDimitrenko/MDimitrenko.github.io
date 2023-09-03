@@ -26,7 +26,9 @@ export const ShortDefinitionProductBlock: FC<ShortDefinitionProductBlockProps> =
       <hr />
       <DescriptionText size="big" bold="true" text={text} />
       <DescriptionText size="medium" text={shortDefinition} />
-      <BasketBlock />
+      <div className="basket-button-block">
+        <BasketBlock />
+      </div>
     </div>
   );
 };

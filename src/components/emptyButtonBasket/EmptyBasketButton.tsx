@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { BasketButton } from '../basketButton/BasketButton';
 import { useTranslation } from 'react-i18next';
+import './EmptyBasketButton.css';
 // eslint-disable-next-line react/prop-types
 export const EmptyBasketButton: FC = () => {
   const { t } = useTranslation();
