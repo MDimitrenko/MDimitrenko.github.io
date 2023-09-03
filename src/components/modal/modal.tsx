@@ -24,8 +24,8 @@ const Mask = styled.div`
 
 const Window = styled.div`
   background-color: #fff;
-  width: 300px;
-  height: 300px;
+  // width: 300px;
+  // height: 300px;
   padding: 16px;
   display: flex;
   flex-direction: column;

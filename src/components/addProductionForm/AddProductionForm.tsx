@@ -1,14 +1,14 @@
 import React, { FC, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import './AddProductionForm.css';
 
-interface AddProductionFormProps {
-  category: string;
-  productionName: string;
-  shortDefinition: string;
-  definition: string;
-  price: number;
-  images: ImageItem[];
+export interface AddProductionFormProps {
+  category?: string;
+  productionName?: string;
+  shortDefinition?: string;
+  definition?: string;
+  price?: number;
+  images?: ImageItem[];
 }
 interface ImageItem {
   id: number;
@@ -23,14 +23,14 @@ export const AddProductionForm: FC<AddProductionFormProps> = ({
   shortDefinition,
   definition,
   price,
-  images,
+  images = [],
 }) => {
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm({
+  } = useForm<FormValues>({
     mode: 'onBlur',
     defaultValues: {
       categorySelect: category,
@@ -40,14 +40,21 @@ export const AddProductionForm: FC<AddProductionFormProps> = ({
       price: price,
     },
   });
-  const emptyFile = () => {
+  const emptyFile = (): ImageItem => {
     return {
       id: 1,
       imageKey: 'image1',
       selectedFile: false,
     };
   };
-  const addProduct = (value) => {
+  interface FormValues {
+    categorySelect: string;
+    productionName: string;
+    shortDefinition: string;
+    definition: string;
+    price: number;
+  }
+  const addProduct: SubmitHandler<FormValues> = (value): void => {
     console.log('Отправляем данные формы');
     console.log(value);
     console.log(imageList);
@@ -56,7 +63,7 @@ export const AddProductionForm: FC<AddProductionFormProps> = ({
   };
 
   const [imageList, setImageList] = useState([emptyFile(), ...images]);
-  const onChangeFile = (imageKey: string) => {
+  const onChangeFile = (imageKey: string): void => {
     const updateList = imageList.map((image) => {
       if (image.imageKey === imageKey) {
         console.log(imageKey);
@@ -78,7 +85,7 @@ export const AddProductionForm: FC<AddProductionFormProps> = ({
     console.log(updateList);
     setImageList(() => updateList);
   };
-  const onClickDeleteFile = (id: number) => {
+  const onClickDeleteFile = (id: number): void => {
     console.log(imageList);
     const updateList = imageList.filter((image) => image.id !== id);
     console.log(updateList);
