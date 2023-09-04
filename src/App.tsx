@@ -1,12 +1,10 @@
 import React from 'react';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import Layout from './components/Layout/Layout';
-import { DefinitionProductBlock } from './components/definitionProductBlock/DefinitionProductBlock';
 import { useTranslation } from 'react-i18next';
 import ModalButton from './components/modalButton/modalButton';
 import { ThemeProvider } from './theming';
-import Content from './components/Content/Content';
 import {
-  ShortDefinitionProductList,
   ShortDefinitionProductListItem,
 } from './components/shortDefinitionProductList/ShortDefinitionProductList';
 
@@ -31,11 +29,10 @@ function App() {
   return (
     <div className="App">
       <ThemeProvider>
-        <Layout />
-        <Content>
-          <ModalButton />
-          <ShortDefinitionProductList shortDefinitionProduct={shortDefinitionProductList} />
-        </Content>
+        <BrowserRouter>
+            <Layout />
+            <ModalButton />
+          </BrowserRouter>
       </ThemeProvider>
     </div>
   );
