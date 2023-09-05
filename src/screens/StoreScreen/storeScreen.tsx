@@ -1,10 +1,10 @@
 import React from 'react';
-import { BasketButton } from '../components/basketButton/BasketButton';
+import { BasketButton } from '../../components/basketButton/BasketButton';
 import { Link } from 'react-router-dom';
 import {
   ShortDefinitionProductList,
   ShortDefinitionProductListItem,
-} from '../components/shortDefinitionProductList/ShortDefinitionProductList';
+} from '../../components/shortDefinitionProductList/ShortDefinitionProductList';
 const StoreScreen = () => {
   const shortDefinitionProductList: ShortDefinitionProductListItem[] = [
     {
