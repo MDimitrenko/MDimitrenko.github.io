@@ -1,7 +1,5 @@
 import Header from './Header';
-import { StoryFn } from '@storybook/react';
-import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { RouteDecorator } from '../../../.storybook/storyDecorators'
 
 export default {
   component: Header,
@@ -13,10 +11,3 @@ export const HeaderBlock = {
     args: {
     },
 };
-export function RouteDecorator (StoryComponent: StoryFn): JSX.Element {
-  return (
-    <BrowserRouter>
-      <StoryComponent />
-    </BrowserRouter>
-  );
-}
