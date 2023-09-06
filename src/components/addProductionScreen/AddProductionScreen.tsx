@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import { AddProductionForm, AddProductionFormProps } from '../addProductionForm/AddProductionForm';
+import { AddProductionForm, AddProductionFormProps } from '../Forms/addProductionForm/AddProductionForm';
 import Modal from '../modal/modal';
 
 // eslint-disable-next-line react/prop-types

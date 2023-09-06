@@ -1,9 +1,13 @@
 import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
 import Layout from './components/Layout/Layout';
 import { useTranslation } from 'react-i18next';
 import ModalButton from './components/modalButton/modalButton';
 import { ThemeProvider } from './theming';
 import { Navigation } from './navigation';
+import { Home } from '@mui/icons-material';
+import CartScreen from './screens/CartScreen';
+import StoreScreen from './screens/StoreScreen';
 
 function App() {
   const { t } = useTranslation();
@@ -11,9 +15,12 @@ function App() {
   return (
     <div className="App">
       <ThemeProvider>
-        <Layout></Layout>
-        <ModalButton />
-        <Navigation />
+        <BrowserRouter>
+          <Layout>
+            <ModalButton />
+            <Navigation />
+          </Layout>
+        </BrowserRouter>
       </ThemeProvider>
     </div>
   );

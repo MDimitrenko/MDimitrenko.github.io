@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import Modal from '../modal/modal';
-import { AddProductionForm } from '../addProductionForm/AddProductionForm';
+import { AddProductionForm } from '../Forms/addProductionForm/AddProductionForm';
 
 const Container = styled.div`
   display: flex;
