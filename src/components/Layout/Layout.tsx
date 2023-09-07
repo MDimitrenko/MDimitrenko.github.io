@@ -1,21 +1,22 @@
-import React from "react"
+import React from 'react';
 import s from './Layout.module.sass';
 import Header from '../Header/Header';
-import Navigation from '../Navigation/Navigation';
+import { useTranslation } from 'react-i18next';
 
 type LayoutProps = {
-    children?: React.ReactNode;
+  children?: React.ReactNode;
 };
 
-const Layout = ({children}: LayoutProps) => {
-    return (
-        <div className={s.layout}>
-            <Header>
-                {children}
-            </Header>
-            <Navigation />
-        </div>
-    )
-}
+const Layout = ({ children }: LayoutProps) => {
+  const { t } = useTranslation();
+  return (
+    <>
+      <div>
+        <Header />
+        <main>{children}</main>
+      </div>
+    </>
+  );
+};
 
-export default Layout
+export default Layout;

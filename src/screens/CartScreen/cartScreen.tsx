@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import CartItem from '../../components/cartItem/cartItem';
+import { useTranslation } from 'react-i18next';
 
 const CartScreen = () => {
+  const { t } = useTranslation();
   const cartItems = [
     {
       id: 1,
@@ -22,7 +24,7 @@ const CartScreen = () => {
 
   return (
     <div>
-      <Link to="/">Back to Store</Link>
+      <Link to="/store">{t('BackToStoreTitle')}</Link>
 
       <h2>Your Cart</h2>
 

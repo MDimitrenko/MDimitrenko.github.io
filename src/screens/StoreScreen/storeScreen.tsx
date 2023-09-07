@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { BasketButton } from '../../components/basketButton/BasketButton';
 import { Link } from 'react-router-dom';
+import { Page } from 'src/components/Page';
+import s from './storeScreen.sass';
+import { useTranslation } from 'react-i18next';
 import {
   ShortDefinitionProductList,
   ShortDefinitionProductListItem,
 } from '../../components/shortDefinitionProductList/ShortDefinitionProductList';
-const StoreScreen = () => {
+export const StoreScreen: FC = () => {
+  const { t } = useTranslation();
   const shortDefinitionProductList: ShortDefinitionProductListItem[] = [
     {
       id: 1,
@@ -24,13 +28,11 @@ const StoreScreen = () => {
   ];
 
   return (
-    <div>
-      <Link to="/cart">
-        <BasketButton text={'Cart'} />
-      </Link>
-
-      <ShortDefinitionProductList shortDefinitionProduct={shortDefinitionProductList} />
-    </div>
+    <Page title={t`StoreScreenTitle`} className={s.root}>
+      <div>
+        <ShortDefinitionProductList shortDefinitionProduct={shortDefinitionProductList} />
+      </div>
+    </Page>
   );
 };
 

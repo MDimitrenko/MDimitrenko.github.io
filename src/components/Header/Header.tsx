@@ -5,6 +5,8 @@ import { LanguageButton } from '../languageButton/LanguageButton';
 import { ThemeSwitcher } from '../ThemeSwitcher';
 import { useTranslation } from 'react-i18next';
 import TopMenu from './TopMenu/TopMenu';
+import { Link } from 'react-router-dom';
+import { BasketButton } from '../basketButton/BasketButton';
 
 type HeaderProps = {
   children?: React.ReactNode;
@@ -30,8 +32,14 @@ const Header = ({ children }: HeaderProps) => {
     <div className={s.header} id="header" ref={stickyHeader}>
       <Logo />
       <TopMenu />
+
       <ThemeSwitcher />
       <LanguageButton />
+      <div className={s.buttonsContainer}>
+        <Link to="/cart">
+          <BasketButton text={t`CartButtonTitle`} />
+        </Link>
+      </div>
       {children}
     </div>
   );

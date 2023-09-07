@@ -7,9 +7,7 @@ export const Home: FC = () => {
   const { t } = useTranslation();
   return (
     <Page title={t`HomeScreenTitle`} className={s.root}>
-      <div>
-        {t('description')}
-      </div>
+      <div>{t('description')}</div>
     </Page>
   );
 };
