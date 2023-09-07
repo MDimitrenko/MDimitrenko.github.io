@@ -30,8 +30,8 @@ const ChangeProfileForm = () => {
           <label className={s.label}>{t`ProfileForm.name.title`}</label>
           <input 
             className={s.input_pass}
-            name="oldPassword"
-            type="password"
+            name="name"
+            type="text"
             placeholder={t`ProfileForm.name.placeholder`}
             {...register('name', { required: er})}
           />
@@ -41,8 +41,8 @@ const ChangeProfileForm = () => {
           <label className={s.label}>{t`ProfileForm.about.title`}</label>
           <input 
             className={s.input_pass}
-            name="password"
-            type="password"
+            name="about"
+            type="text"
             placeholder={t`ProfileForm.about.placeholder`}
             {...register('about')}
           />
