@@ -14,7 +14,7 @@ function App() {
       <ThemeProvider>
         <BrowserRouter>
           <Layout>
-            <ModalButton />
+            {/*<ModalButton />*/}
             <Navigation />
           </Layout>
         </BrowserRouter>
