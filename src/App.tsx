@@ -5,9 +5,6 @@ import { useTranslation } from 'react-i18next';
 import ModalButton from './components/modalButton/modalButton';
 import { ThemeProvider } from './theming';
 import { Navigation } from './navigation';
-import { Home } from '@mui/icons-material';
-import CartScreen from './screens/CartScreen';
-import StoreScreen from './screens/StoreScreen';
 
 function App() {
   const { t } = useTranslation();
