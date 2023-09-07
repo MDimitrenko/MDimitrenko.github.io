@@ -24,6 +24,9 @@ const TopMenu = ({ children }: TopMenuProps) => {
       <NavLink className={getClassName} to="/store">
         {t`StoreScreenTitle`}
       </NavLink>
+      <NavLink className={getClassName} to="/addProduct">
+        {t`AddProductTitle`}
+      </NavLink>
     </div>
   );
 };

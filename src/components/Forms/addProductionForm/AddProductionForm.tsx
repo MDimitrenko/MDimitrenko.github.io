@@ -1,6 +1,8 @@
-import React, { FC, useState } from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import './AddProductionForm.css';
+import Modal from 'src/components/modal/modal';
+import {useTranslation} from "react-i18next";
 
 export interface AddProductionFormProps {
   category?: string;
@@ -61,7 +63,7 @@ export const AddProductionForm: FC<AddProductionFormProps> = ({
     reset();
     setImageList(() => [emptyFile()]);
   };
-
+  const { t } = useTranslation();
   const [imageList, setImageList] = useState([emptyFile(), ...images]);
   const onChangeFile = (imageKey: string): void => {
     const updateList = imageList.map((image) => {
@@ -109,7 +111,7 @@ export const AddProductionForm: FC<AddProductionFormProps> = ({
             hidden={imageItem.selectedFile}
             onChange={() => onChangeFile(imageItem.imageKey)}
           />
-          {!imageItem.selectedFile && <span>Выберите файл</span>}
+          {!imageItem.selectedFile && <span>{t('AddProductForm.selectFile')}</span>}
         </label>
         {imageItem.selectedFile && (
           <span style={{ justifyContent: 'space-between' }}>
@@ -120,58 +122,63 @@ export const AddProductionForm: FC<AddProductionFormProps> = ({
       </div>
     );
   });
+  const handleCloseModal = () => {
+    setIsOpen(false);
+  };
+  const [isOpen, setIsOpen] = useState(true);
+
   return (
-    <>
+    <Modal visible={isOpen} onClose={handleCloseModal}>
       <form onSubmit={handleSubmit(addProduct)}>
         <div className="text-field">
-          <label className="text-field__label">Категория товара</label>
+          <label className="text-field__label">{t('AddProductForm.category')}</label>
           <input
             className="text-field__input"
-            placeholder="Категория"
+            placeholder={t('AddProductForm.category')}
             {...register('categorySelect', {
-              required: 'Поле обязательно для заполнения',
+              required: t('AddProductForm.error'),
             })}
           />
 
           <label className="text-field__error-label">{errors.categorySelect?.message}</label>
 
-          <label className="text-field__label">Наименование товара</label>
+          <label className="text-field__label">{t('AddProductForm.productName')}</label>
           <input
             className="text-field__input"
             type="text"
-            placeholder="Наименование товара"
-            {...register('productionName', { required: 'Поле обязательно для заполнения' })}
+            placeholder={t('AddProductForm.productName')}
+            {...register('productionName', { required: t('AddProductForm.error') })}
           />
 
           <label className="text-field__error-label">{errors.productionName?.message}</label>
 
-          <label className="text-field__label">Краткое описание товара</label>
+          <label className="text-field__label">{t('AddProductForm.shortDescription')}</label>
           <input
             className="text-field__input"
             type="text"
-            placeholder="Краткое описание товара"
-            {...register('shortDefinition', { required: 'Поле обязательно для заполнения' })}
+            placeholder={t('AddProductForm.shortDescription')}
+            {...register('shortDefinition', { required: t('AddProductForm.error') })}
           />
 
           <label className="text-field__error-label">{errors.shortDefinition?.message}</label>
-          <label className="text-field__label">Полное описание товара</label>
+          <label className="text-field__label">{t('AddProductForm.description')}</label>
           <input
             className="text-field__input"
             type="text"
-            placeholder="Полное описание товара"
-            {...register('definition', { required: 'Поле обязательно для заполнения' })}
+            placeholder={t('AddProductForm.description')}
+            {...register('definition', { required: t('AddProductForm.error') })}
           />
 
           <label className="text-field__error-label">{errors.definition?.message}</label>
 
-          <label className="text-field__label">Цена</label>
+          <label className="text-field__label">{t('AddProductForm.price')}</label>
           <input
             className="text-field__input"
             type="number"
-            placeholder="Цена"
+            placeholder={t('AddProductForm.price')}
             step="any"
             {...register('price', {
-              required: 'Поле обязательно для заполнения',
+              required: t('AddProductForm.error'),
               min: {
                 message: 'Минимальная цена 1 рэ',
                 value: 1,
@@ -182,15 +189,15 @@ export const AddProductionForm: FC<AddProductionFormProps> = ({
           <label className="text-field__error-label">{errors.price?.message}</label>
           <div className="block">
             <hr />
-            <label className="text-field__label">Добавьте изображения</label>
+            <label className="text-field__label">{t('AddProductForm.addImages')}</label>
             {imageListBlock}
           </div>
 
           <button type="submit" className="button-add">
-            Добавить
+            {t('AddProductForm.add')}
           </button>
         </div>
       </form>
-    </>
+    </Modal>
   );
 };
