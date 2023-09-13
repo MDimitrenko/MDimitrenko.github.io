@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import './LoginUserForm.css';
 
 interface LoginUserFormProps {
@@ -13,11 +13,15 @@ export const LoginUserForm: FC<LoginUserFormProps> = ({ registration }) => {
     reset,
     watch,
     formState: { errors },
-  } = useForm({
+  } = useForm<FormValues>({
     mode: 'onBlur',
   });
-
-  const clickSubmit = (value) => {
+  interface FormValues {
+    login: string;
+    password: string;
+    confirmPassword: string;
+  }
+  const clickSubmit: SubmitHandler<FormValues> = (value) => {
     console.log('Отправляем данные формы');
     console.log(value);
 

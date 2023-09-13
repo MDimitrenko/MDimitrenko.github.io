@@ -14,8 +14,8 @@ export const AddProduction = {
     shortDefinition: '',
     definition: '',
     price: 0,
-    images: [
+    // images: [
 
-    ],
+    // ],
   },
 };
