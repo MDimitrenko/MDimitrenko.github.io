@@ -1,25 +1,12 @@
-import React, {FC, useEffect, useState} from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import './AddProductionForm.css';
 import Modal from 'src/components/modal/modal';
-import {useTranslation} from "react-i18next";
+import { useTranslation } from 'react-i18next';
+import { ImageItem, Product } from '../../../reduxToolkit/app.types';
 
-export interface AddProductionFormProps {
-  category?: string;
-  productionName?: string;
-  shortDefinition?: string;
-  definition?: string;
-  price?: number;
-  images?: ImageItem[];
-}
-interface ImageItem {
-  id: number;
-  imageKey: string;
-  fileName?: string;
-  selectedFile: boolean;
-}
 // eslint-disable-next-line react/prop-types
-export const AddProductionForm: FC<AddProductionFormProps> = ({
+export const AddProductionForm: FC<Product> = ({
   category,
   productionName,
   shortDefinition,
