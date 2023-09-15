@@ -5,6 +5,9 @@ import StoreScreen from 'src/screens/StoreScreen/storeScreen';
 import ProfileScreen from 'src/screens/ProfileScreen/Profile';
 import HomeScreen from 'src/screens/HomeScreen/Home';
 import {AddProductionForm} from "src/components/Forms/addProductionForm/AddProductionForm";
+import NotFound from 'src/screens/NotFound';
+import RegistrationScreen from 'src/screens/RegistrationScreen';
+import AuthorizationScreen from 'src/screens/AuthorizationScreen';
 
 export const Navigation: React.FC = () => (
   <Routes>
@@ -13,5 +16,8 @@ export const Navigation: React.FC = () => (
     <Route path="/cart" element={<CartScreen />} />
     <Route path="/profile" element={<ProfileScreen />} />
     <Route path="/addProduct" element={<AddProductionForm />} />
+    <Route path="/signin" element={<AuthorizationScreen />} />
+    <Route path="/signup" element={<RegistrationScreen />} />
+    <Route path="*" element={<NotFound />} />
   </Routes>
 );

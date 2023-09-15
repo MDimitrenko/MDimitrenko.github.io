@@ -1,12 +1,17 @@
 import React, { FC, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import './LoginUserForm.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { signIn } from 'src/reduxToolkit/profile';
+import { useNavigate } from 'react-router-dom';
 
 interface LoginUserFormProps {
   registration: boolean;
 }
 // eslint-disable-next-line react/prop-types
 export const LoginUserForm: FC<LoginUserFormProps> = ({ registration }) => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch()
   const {
     register,
     handleSubmit,
@@ -21,7 +26,10 @@ export const LoginUserForm: FC<LoginUserFormProps> = ({ registration }) => {
     password: string;
     confirmPassword: string;
   }
-  const clickSubmit: SubmitHandler<FormValues> = (value) => {
+
+  const clickSubmit: SubmitHandler<FormValues> = async (value) => {
+    dispatch(signIn())
+    navigate('/')
     console.log('Отправляем данные формы');
     console.log(value);
 

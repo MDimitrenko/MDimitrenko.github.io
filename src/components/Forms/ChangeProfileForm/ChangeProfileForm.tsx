@@ -2,6 +2,8 @@ import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import s from './ChangeProfileForm.module.sass';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux'
+import { RootState } from 'src/reduxToolkit/store';
 
 interface СhangeProfileFormProps {
   name: string;
@@ -23,12 +25,15 @@ const ChangeProfileForm = () => {
       console.log(value);
       reset();
     }
+    const about = useSelector<RootState, string>(state =>state.profile.about);
+    const nikename = useSelector<RootState, string>(state =>state.profile.nikename);
     return (
       <form className={s.form} onSubmit={handleSubmit(onСhangePassword)}>
         <div className={s.title}>{t`ProfileScreen.updateProfile.title`}</div>
         <div className={s.field}>
           <label className={s.label}>{t`ProfileForm.name.title`}</label>
-          <input 
+          <input
+            value={nikename}
             className={s.input_pass}
             name="name"
             type="text"
@@ -39,7 +44,8 @@ const ChangeProfileForm = () => {
         </div>
         <div className={s.field}>
           <label className={s.label}>{t`ProfileForm.about.title`}</label>
-          <input 
+          <input
+            value={about}
             className={s.input_pass}
             name="about"
             type="text"
@@ -49,7 +55,7 @@ const ChangeProfileForm = () => {
           <label className={s.error_label}>{errors.about?.message}</label>
         </div>
         <button className={s.button_send} type="submit">
-        {t`ProfileScreen.updateProfile.save`}
+          {t`ProfileScreen.updateProfile.save`}
         </button>
       </form>
     )
