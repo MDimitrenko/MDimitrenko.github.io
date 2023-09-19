@@ -3,7 +3,7 @@ import s from './TopMenu.module.sass';
 import { NavLink, NavLinkProps } from 'react-router-dom';
 import cn from 'clsx';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux'
+import { useSelector } from 'react-redux';
 import { RootState } from 'src/reduxToolkit/store';
 
 type TopMenuProps = {
@@ -14,7 +14,8 @@ export const getClassName: NavLinkProps['className'] = ({ isActive }) => cn(s.li
 
 const TopMenu = ({ children }: TopMenuProps) => {
   const { t } = useTranslation();
-  const isSingIn = useSelector<RootState, boolean>(state =>state.profile.isSingIn);
+  const isSingIn = useSelector<RootState, boolean>((state) => state.profile.isSingIn);
+  const isAdmin = useSelector<RootState, boolean>((state) => state.profile.isAdmin);
   return (
     <div className={s.menu}>
       {children}
@@ -24,14 +25,16 @@ const TopMenu = ({ children }: TopMenuProps) => {
       <NavLink className={getClassName} to="/store">
         {t`StoreScreenTitle`}
       </NavLink>
-      {isSingIn &&
-         <NavLink className={getClassName} to="/profile">
+      {isSingIn && (
+        <NavLink className={getClassName} to="/profile">
           {t`ProfileScreenTitle`}
         </NavLink>
-      }
-      <NavLink className={getClassName} to="/addProduct">
-        {t`AddProductTitle`}
-      </NavLink>
+      )}
+      {isAdmin && (
+        <NavLink className={getClassName} to="/addProduct">
+          {t`AddProductTitle`}
+        </NavLink>
+      )}
     </div>
   );
 };

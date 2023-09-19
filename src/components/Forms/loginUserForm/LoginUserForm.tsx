@@ -11,7 +11,7 @@ interface LoginUserFormProps {
 // eslint-disable-next-line react/prop-types
 export const LoginUserForm: FC<LoginUserFormProps> = ({ registration }) => {
   const navigate = useNavigate();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -28,8 +28,9 @@ export const LoginUserForm: FC<LoginUserFormProps> = ({ registration }) => {
   }
 
   const clickSubmit: SubmitHandler<FormValues> = async (value) => {
-    dispatch(signIn())
-    navigate('/')
+    const { login, password } = value;
+    dispatch(signIn({ login, password }));
+    navigate('/');
     console.log('Отправляем данные формы');
     console.log(value);
 
