@@ -44,9 +44,6 @@ export const AddProductionForm: FC<Product> = ({
     price: number;
   }
   const addProduct: SubmitHandler<FormValues> = (value): void => {
-    console.log('Отправляем данные формы');
-    console.log(value);
-    console.log(imageList);
     reset();
     setImageList(() => [emptyFile()]);
   };

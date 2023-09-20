@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
+import { removeProduct } from '../../reduxToolkit/basketSlice';
 
 const ItemContainer = styled.div`
   display: flex;
@@ -56,22 +58,27 @@ const DeleteButton = styled.button`
 `;
 
 interface CartItemProps {
-  name: string;
-  description: string;
+  id?: number;
+  productionName: string;
+  shortDefinition: string;
   price: number;
-  imageSrc: string;
-  onDelete: () => void;
+  image: string;
 }
 
-const CartItem: React.FC<CartItemProps> = ({ name, description, price, imageSrc, onDelete }) => {
+const CartItem: React.FC<CartItemProps> = ({ id, productionName, shortDefinition, price, image }) => {
+  const dispatch = useDispatch();
+  const onDelete = () => {
+    console.log(id);
+    dispatch(removeProduct(id));
+  };
   return (
     <ItemContainer>
-      <ItemImage src={imageSrc} alt={name} />
+      <ItemImage src={require(`../../images/${image}`)} />
       <ItemContent>
-        <ItemHeader>{name}</ItemHeader>
+        <ItemHeader>{productionName}</ItemHeader>
         <ItemFooter>
           <div>
-            <ItemDescription>{description}</ItemDescription>
+            <ItemDescription>{shortDefinition}</ItemDescription>
             <ItemPrice>${price}</ItemPrice>
           </div>
           <DeleteButton onClick={onDelete}>Delete</DeleteButton>

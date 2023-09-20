@@ -1,12 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-interface Production {
-  id?: number;
+export interface Production {
+  id: number;
   categorySelect: string;
   productionName: string;
   shortDefinition: string;
   definition: string;
   price: number;
+  image: string;
 }
 export interface StateProps {
   products: Production[];
@@ -20,10 +21,13 @@ const basketSlice = createSlice({
   initialState,
   reducers: {
     addProduct: (state = initialState, action) => {
-      state.products = [action.payload, ...state.products];
+      state.products.push(action.payload);
     },
     removeProduct: (state = initialState, action) => {
-      state.products = state.products.filter((item) => item.id !== action.payload);
+      state.products.splice(
+        state.products.findIndex((item) => item.id === action.payload),
+        1
+      );
     },
   },
 });

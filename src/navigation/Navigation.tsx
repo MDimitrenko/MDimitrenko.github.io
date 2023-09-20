@@ -8,8 +8,8 @@ import NotFound from 'src/screens/NotFound';
 import RegistrationScreen from 'src/screens/RegistrationScreen';
 import AuthorizationScreen from 'src/screens/AuthorizationScreen';
 import { TokenProvider } from 'src/TokenProvider'; // Импортируйте TokenProvider
-import { AddProductionForm } from 'src/components/Forms/addProductionForm/AddProductionForm';
 import { ProtectedRoute } from './ProtectedRoute';
+import { AddProductionForm } from '../components/Forms/addProductionForm/AddProductionForm';
 
 export const Navigation: React.FC = () => (
   <TokenProvider>
