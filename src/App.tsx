@@ -1,20 +1,27 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import Layout from './components/Layout/Layout';
-import { useTranslation } from 'react-i18next';
-import ModalButton from './components/modalButton/modalButton';
 import { ThemeProvider } from './theming';
 import { Navigation } from './navigation';
+import { setProfile } from './reduxToolkit/profile'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from 'src/reduxToolkit/store';
 
 function App() {
-  const { t } = useTranslation();
+  const dispatch = useDispatch()
+  const login = useSelector<RootState, string>((state) => state.profile.login);
+  useEffect(()=>{
+    const accessToken = localStorage.getItem('accessToken')
+    if(accessToken){
+      dispatch(setProfile({login}))
+    }
+  },[dispatch, login])
 
   return (
     <div className="App">
       <ThemeProvider>
         <BrowserRouter>
           <Layout>
-            {/*<ModalButton />*/}
             <Navigation />
           </Layout>
         </BrowserRouter>

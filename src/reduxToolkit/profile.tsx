@@ -18,7 +18,7 @@ export interface LoginPassword {
 const initialState: StateProps = {
   isSingIn: false,
   isAdmin: false,
-  login: '',
+  login: localStorage.getItem('login'),
   password: '',
   nikename: '',
   about: '',
@@ -35,8 +35,23 @@ export const profile = createSlice({
   name: 'profile',
   initialState,
   reducers: {
+    setProfile: (state: StateProps, action: { payload: { login: string; } }) => {
+        const { login } = action.payload;
+        state.isSingIn = true;
+        if (login === 'admin') {
+            state.isAdmin = true;
+            state.nikename = 'Admin';
+            state.about = 'admin';
+        }
+        else {
+            state.isAdmin = false;
+            state.nikename = 'Анна';
+            state.about = 'упс';
+        }
+    },
     signOut: (state: StateProps) => {
       localStorage.removeItem('accessToken');
+      localStorage.removeItem('login');
       state.isSingIn = false;
       state.isAdmin = false;
       state.nikename = '';
@@ -44,7 +59,7 @@ export const profile = createSlice({
     },
     signIn: (state: StateProps, action: { payload: { login: string; password: string } }) => {
       const { login, password } = action.payload;
-
+      localStorage.setItem('login', login);
       // В этом примере, если логин равен "admin" и пароль верен, устанавливаем isAdmin в true
       if (login === 'admin' && password === 'adminadmin') {
         localStorage.setItem(
@@ -71,5 +86,5 @@ export const profile = createSlice({
   },
 });
 
-export const { signOut, signIn } = profile.actions;
+export const { signOut, signIn, setProfile } = profile.actions;
 export default profile.reducer;

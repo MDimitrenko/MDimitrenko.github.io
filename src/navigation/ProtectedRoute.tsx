@@ -1,5 +1,5 @@
 import React, { FC, ReactNode } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import { useTokenContext } from 'src/TokenProvider';
 
 interface Props {
@@ -8,7 +8,10 @@ interface Props {
 
 export const ProtectedRoute: FC<Props> = ({ children }) => {
   const [token, isAdmin] = useTokenContext();
-
+  const location = useLocation();
+  if ((location.pathname === "/profile") && token) {
+    return <>{children}</>;
+  }
   if (token && isAdmin) {
     return <>{children}</>;
   } else {
