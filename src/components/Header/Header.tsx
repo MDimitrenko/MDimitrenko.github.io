@@ -6,11 +6,11 @@ import { ThemeSwitcher } from '../ThemeSwitcher';
 import { useTranslation } from 'react-i18next';
 import TopMenu from './TopMenu/TopMenu';
 import { Link } from 'react-router-dom';
-import { BasketButton } from '../basketButton/BasketButton';
 import YesAuthorization from './YesAuthorization/YesAuthorization';
 import NoAuthorization from './NoAuthorization/NoAuthorization';
-import { useSelector } from 'react-redux'
-import { RootState } from 'src/reduxToolkit/store';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../reduxToolkit/store';
+import { BasicButton } from '../basicButton/BasicButton';
 
 type HeaderProps = {
   children?: React.ReactNode;
@@ -32,19 +32,19 @@ const Header = ({ children }: HeaderProps) => {
     window.addEventListener('scroll', stickyHeaderEvent);
   }, []);
 
-  const isSingIn = useSelector<RootState, boolean>(state =>state.profile.isSingIn);
-  const Account = isSingIn ? YesAuthorization : NoAuthorization
+  const isSingIn = useSelector<RootState, boolean>((state) => state.profile.isSingIn);
+  const Account = isSingIn ? YesAuthorization : NoAuthorization;
 
   return (
     <div className={s.header} id="header" ref={stickyHeader}>
       <Logo />
       <TopMenu />
-      <Account/>
+      <Account />
       <ThemeSwitcher />
       <LanguageButton />
       <div className={s.buttonsContainer}>
         <Link to="/cart">
-          <BasketButton text={t`CartButtonTitle`} />
+          <BasicButton text={t`CartButtonTitle`} />
         </Link>
       </div>
       {children}
