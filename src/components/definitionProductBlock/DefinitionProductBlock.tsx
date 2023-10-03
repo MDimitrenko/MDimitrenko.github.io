@@ -5,8 +5,10 @@ import './DefinitionProductBlock.css';
 import { DescriptionText } from '../descriptionText/DescriptionText';
 import { BasketBlock } from '../basketBlock/BasketBlock';
 import { useTranslation } from 'react-i18next';
+import { Production } from '../../reduxToolkit/basketSlice';
 
 interface DefinitionProps {
+  id: number;
   amount: number;
   images: string[];
   nameProduct: string;
@@ -14,7 +16,14 @@ interface DefinitionProps {
   definition: string;
 }
 
-export const DefinitionProductBlock: FC<DefinitionProps> = ({ amount, images, nameProduct, category, definition }) => {
+export const DefinitionProductBlock: FC<DefinitionProps> = ({
+  id,
+  amount,
+  images,
+  nameProduct,
+  category,
+  definition,
+}) => {
   // eslint-disable-next-line react/prop-types
   const { t } = useTranslation();
   const imagesList = images.map((img) => (
@@ -23,6 +32,15 @@ export const DefinitionProductBlock: FC<DefinitionProps> = ({ amount, images, na
       <ProductImage image={img} />
     </div>
   ));
+  const production: Production = {
+    id: id,
+    categorySelect: category,
+    productionName: nameProduct,
+    shortDefinition: definition,
+    definition: definition,
+    price: amount,
+    image: images[0],
+  };
   return (
     <div className="definition_product_block__root_div">
       <ProductImage image={images[0]} />
@@ -35,7 +53,7 @@ export const DefinitionProductBlock: FC<DefinitionProps> = ({ amount, images, na
 
       <DescriptionText size="medium" text={definition} />
 
-      <BasketBlock />
+      <BasketBlock product={production} />
     </div>
   );
 };

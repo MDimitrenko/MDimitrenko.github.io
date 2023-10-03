@@ -5,29 +5,22 @@ import './ShortDefinitionProductBlock.css';
 import '../productImage/ProductImage.css';
 import { DescriptionText } from '../descriptionText/DescriptionText';
 import { BasketBlock } from '../basketBlock/BasketBlock';
+import { Production } from '../../reduxToolkit/basketSlice';
 
 export interface ShortDefinitionProductBlockProps {
-  amount: number;
-  image: string;
-  text: string;
-  shortDefinition: string;
+  product: Production;
 }
 
-export const ShortDefinitionProductBlock: FC<ShortDefinitionProductBlockProps> = ({
-  amount,
-  image,
-  text,
-  shortDefinition,
-}) => {
+export const ShortDefinitionProductBlock: FC<ShortDefinitionProductBlockProps> = ({ product }) => {
   return (
     <div className="short-definition-product-block__root-div">
-      <ProductImage divClassName="product-image__div" image={image} />
-      <AmountText amount={amount} />
+      <ProductImage divClassName="product-image__div" image={product.image} />
+      <AmountText amount={product.price} />
       <hr />
-      <DescriptionText size="big" bold="true" text={text} />
-      <DescriptionText size="medium" text={shortDefinition} />
+      <DescriptionText size="big" bold="true" text={product.categorySelect} />
+      <DescriptionText size="medium" text={product.shortDefinition} />
       <div className="basket-button-block">
-        <BasketBlock />
+        <BasketBlock product={product} />
       </div>
     </div>
   );

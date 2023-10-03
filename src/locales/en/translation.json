@@ -86,5 +86,8 @@
     "selectFile": "Select a file"
 
   },
-  "is_required": "Required field"
+  "is_required": "Required field",
+  "Authorization": "Sign in",
+  "Registration": "Sign up",
+  "Exit": "Sign out"
 }

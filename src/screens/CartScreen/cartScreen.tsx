@@ -2,25 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import CartItem from '../../components/cartItem/cartItem';
 import { useTranslation } from 'react-i18next';
+import { Production } from '../../reduxToolkit/basketSlice';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../reduxToolkit/store';
 
 const CartScreen = () => {
   const { t } = useTranslation();
-  const cartItems = [
-    {
-      id: 1,
-      name: 'Корм для кошек',
-      description: 'Влажный корм для кошек, с курицей. 75 г',
-      price: 1.99,
-      imageSrc: 'https://www.pngkey.com/png/detail/614-6141103_whiskas-pocket-ocean-fish-1-2kg-whiskas-cat.png',
-    },
-    {
-      id: 2,
-      name: 'Корм для кошек с курицей',
-      description: 'Влажный корм для кошек, с курицей. 75 г',
-      price: 2.99,
-      imageSrc: 'https://www.pngkey.com/png/detail/614-6141103_whiskas-pocket-ocean-fish-1-2kg-whiskas-cat.png',
-    },
-  ];
+  const products = useSelector<RootState, Production[]>((state) => state.basketSlice.products);
 
   return (
     <div>
@@ -28,17 +16,18 @@ const CartScreen = () => {
 
       <h2>Your Cart</h2>
 
-      {}
-      {cartItems.map((item) => (
-        <CartItem
-          key={item.id}
-          name={item.name}
-          description={item.description}
-          price={item.price}
-          imageSrc={item.imageSrc}
-          onDelete={() => {}}
-        />
-      ))}
+      {products
+        .filter((item) => item !== undefined)
+        .map((item) => (
+          <CartItem
+            key={item.id}
+            id={item.id}
+            productionName={item.productionName}
+            shortDefinition={item.shortDefinition}
+            price={item.price}
+            image={item.image}
+          />
+        ))}
     </div>
   );
 };

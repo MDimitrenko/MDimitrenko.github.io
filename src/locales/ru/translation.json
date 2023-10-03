@@ -86,5 +86,8 @@
     "selectFile": "Выберите файл"
 
   },
-  "is_required": "Обязательное поле"
+  "is_required": "Обязательное поле",
+  "Authorization": "Войти",
+  "Registration": "Зарегистрироваться",
+  "Exit": "Выйти"
 }
