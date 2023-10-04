@@ -5,7 +5,7 @@ import { createRandomProduct, generateRandomNumber, Product } from '../../homewo
 import { Production } from '../../reduxToolkit/basketSlice';
 
 export interface ShortDefinitionProductListItem {
-  id: number;
+  id: string;
   amount: number;
   image: string;
   text: string;
@@ -18,6 +18,7 @@ interface DefinitionProps {
 export const ShortDefinitionProductList: FC<DefinitionProps> = ({ shortDefinitionProduct = [] }) => {
   const [shortDefinitionProductList, setShortDefinitionProductList] = useState(shortDefinitionProduct);
   useEffect(() => {
+    console.log('shortDefinitionProductList:', shortDefinitionProductList);
     const options = {
       // родитель целевого элемента - область просмотра
       // root: null,
@@ -26,36 +27,6 @@ export const ShortDefinitionProductList: FC<DefinitionProps> = ({ shortDefinitio
       // процент пересечения - половина изображения
       threshold: 0.25,
     };
-
-    // создаем наблюдатель
-    const observer = new IntersectionObserver((entries, observer) => {
-      // для каждой записи-целевого элемента
-      entries.forEach((entry) => {
-        // если элемент является наблюдаемым
-        if (entry.isIntersecting) {
-          const createdAt = '2023-06-06T12:06:56.957Z';
-          const product: Product = createRandomProduct(createdAt);
-          const item: ShortDefinitionProductListItem = {
-            id: shortDefinitionProductList.length + 1,
-            amount: product.price,
-            image: product.photo,
-            text: product.category.name,
-            shortDefinition: product.desc,
-          };
-          setShortDefinitionProductList(() => [...shortDefinitionProductList, item]);
-
-          observer.unobserve(entry.target);
-        }
-      });
-    }, options);
-
-    // с помощью цикла следим за всеми img на странице
-    // const arr = document.getElementsByTagName('ShortDefinitionProductBlock');
-    //
-    // for (let i = 0; i < arr.length; i++) {
-    //   observer.observe(arr.item(i));
-    // }
-    observer.observe(document.getElementById(shortDefinitionProductList.length.toString()));
   }, [shortDefinitionProductList]);
   const productList = shortDefinitionProductList.map((item) => {
     const product: Production = {

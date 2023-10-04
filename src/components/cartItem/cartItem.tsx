@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
-import { removeProduct } from '../../reduxToolkit/basketSlice';
+import { Production, removeProduct } from '../../reduxToolkit/basketSlice';
+import axios from 'axios';
 
 const ItemContainer = styled.div`
   display: flex;
@@ -58,22 +59,36 @@ const DeleteButton = styled.button`
 `;
 
 interface CartItemProps {
-  id?: number;
+  orderid?: string;
+  id?: string;
   productionName: string;
   shortDefinition: string;
   price: number;
   image: string;
+  setCartData: React.Dispatch<React.SetStateAction<Production[]>>;
 }
 
-const CartItem: React.FC<CartItemProps> = ({ id, productionName, shortDefinition, price, image }) => {
+const CartItem: React.FC<CartItemProps> = ({ orderid, id, productionName, shortDefinition, price, image }) => {
   const dispatch = useDispatch();
+  const token = localStorage.getItem('accessToken');
   const onDelete = () => {
-    console.log(id);
-    dispatch(removeProduct(id));
+    try {
+      axios.delete(`https://19429ba06ff2.vps.myjino.ru/api/orders/${orderid}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      setCartData((prevCartData: any[]) => prevCartData.filter((item: { id: string }) => item.id !== id));
+      dispatch(removeProduct(id));
+    } catch (error) {
+      console.error('Remove product error:', error);
+    }
   };
+
   return (
     <ItemContainer>
-      <ItemImage src={require(`../../images/${image}`)} />
+      <ItemImage src={image} />
       <ItemContent>
         <ItemHeader>{productionName}</ItemHeader>
         <ItemFooter>
@@ -89,3 +104,6 @@ const CartItem: React.FC<CartItemProps> = ({ id, productionName, shortDefinition
 };
 
 export default CartItem;
+function setCartData(arg0: (prevCartData: any[]) => any[]) {
+  throw new Error('Function not implemented.');
+}

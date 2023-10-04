@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { Production } from '../../reduxToolkit/basketSlice';
 
 interface DefinitionProps {
-  id: number;
+  id: string;
   amount: number;
   images: string[];
   nameProduct: string;
