@@ -65,7 +65,6 @@ interface CartItemProps {
   shortDefinition: string;
   price: number;
   image: string;
-  setCartData: React.Dispatch<React.SetStateAction<Production[]>>;
 }
 
 const CartItem: React.FC<CartItemProps> = ({ orderid, id, productionName, shortDefinition, price, image }) => {
@@ -78,8 +77,6 @@ const CartItem: React.FC<CartItemProps> = ({ orderid, id, productionName, shortD
           Authorization: `Bearer ${token}`,
         },
       });
-
-      setCartData((prevCartData: any[]) => prevCartData.filter((item: { id: string }) => item.id !== id));
       dispatch(removeProduct(id));
     } catch (error) {
       console.error('Remove product error:', error);
@@ -104,6 +101,3 @@ const CartItem: React.FC<CartItemProps> = ({ orderid, id, productionName, shortD
 };
 
 export default CartItem;
-function setCartData(arg0: (prevCartData: any[]) => any[]) {
-  throw new Error('Function not implemented.');
-}
