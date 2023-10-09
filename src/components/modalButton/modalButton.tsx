@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import Modal from '../modal/modal';
-import { AddProductionForm } from '../Forms/addProductionForm/AddProductionForm';
+import { AddProductForm } from '../Forms/addProductForm/AddProductForm';
 
 const Container = styled.div`
   display: flex;
@@ -48,7 +48,7 @@ const ModalButton = () => {
       {isOpen && (
         <Modal visible={isOpen} onClose={handleCloseModal}>
           {/*<p>{inputText}</p>*/}
-          <AddProductionForm />
+          <AddProductForm />
         </Modal>
       )}
     </Container>

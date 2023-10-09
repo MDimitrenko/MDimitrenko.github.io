@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 import { RootState } from '../../reduxToolkit/store';
-import { addProducts } from '../../reduxToolkit/productsSlice';
+import { addProducts } from '../../reduxToolkit/productSlice';
 import { Page } from '../../components/Page';
 import s from './storeScreen.sass';
 import {
@@ -14,7 +14,7 @@ import {
 const StoreScreen: FC = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const products = useSelector((state: RootState) => state.products.data);
+  const products = useSelector((state: RootState) => state.productSlice.data);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [page, setPage] = useState(1);
@@ -33,10 +33,11 @@ const StoreScreen: FC = () => {
       Authorization: `Bearer ${token}`,
     };
     axios
-      .get(`https://19429ba06ff2.vps.myjino.ru/api/products?pagination={"pageSize":6,"pageNumber":${page}}`, { headers })
+      .get(`https://19429ba06ff2.vps.myjino.ru/api/products?pagination={"pageSize":6,"pageNumber":${page}}`, {
+        headers,
+      })
       .then((response) => {
-        const transformedData = transformServerData(response.data);
-        dispatch(addProducts(transformedData));
+        dispatch(addProducts(response.data.data));
         setLoading(false);
 
         if (response.data.pagination) {
@@ -89,11 +90,20 @@ const StoreScreen: FC = () => {
   if (error) {
     return <div>Error: {error}</div>;
   }
-
+  const productList: ShortDefinitionProductListItem[] = products.map(
+    (p) =>
+      ({
+        id: p.id,
+        amount: p.price,
+        image: p.photo,
+        text: p.desc,
+        shortDefinition: p.desc,
+      } as ShortDefinitionProductListItem)
+  );
   return (
     <Page title={t`StoreScreenTitle`} className={s.root}>
       <div>
-        <ShortDefinitionProductList shortDefinitionProduct={products} />
+        <ShortDefinitionProductList shortDefinitionProduct={productList} />
         {!reachedEnd && (totalPages === null || page < totalPages) && <div>Loading more...</div>}
       </div>
     </Page>

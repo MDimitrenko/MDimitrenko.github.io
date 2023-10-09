@@ -9,7 +9,7 @@ import RegistrationScreen from 'src/screens/RegistrationScreen';
 import AuthorizationScreen from 'src/screens/AuthorizationScreen';
 import { TokenProvider } from 'src/TokenProvider'; // Импортируйте TokenProvider
 import { ProtectedRoute } from './ProtectedRoute';
-import { AddProductionForm } from '../components/Forms/addProductionForm/AddProductionForm';
+import { AddProductForm } from '../components/Forms/addProductForm/AddProductForm';
 
 export const Navigation: React.FC = () => (
   <TokenProvider>
@@ -29,7 +29,7 @@ export const Navigation: React.FC = () => (
         path="/addProduct"
         element={
           <ProtectedRoute>
-            <AddProductionForm />
+            <AddProductForm />
           </ProtectedRoute>
         }
       />

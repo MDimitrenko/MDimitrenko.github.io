@@ -64,7 +64,7 @@ export const profile = createSlice({
       if (login === 'admin' && password === 'adminadmin') {
         localStorage.setItem(
           'accessToken',
-          'eyJ1c2VyX2lkIjoxLCJleHAiOjE5ODEzNTcwMzksImlzX2FkbWluIjp0cnVlLCJhbGciOiJIUzI1NiJ9.e30.daVpCqDsosxUUdc9xp8BH3tyh7200iXSArZ_qXK4PVs'
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MWFiYzEyYmE5Y2ZhZTFjOTViZDM3NSIsImlhdCI6MTY5Njg4MDE0OSwiZXhwIjoxNjk3NzQ0MTQ5fQ.1a5N3OWZldMPBcaCFcVI1WPVmjkgXsYrX0QWK2ZVWz8'
         );
         state.isSingIn = true;
         state.isAdmin = true;

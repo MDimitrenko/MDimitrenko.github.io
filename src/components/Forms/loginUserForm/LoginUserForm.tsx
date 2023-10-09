@@ -32,7 +32,7 @@ export const LoginUserForm: FC<LoginUserFormProps> = ({ registration }) => {
     dispatch(signIn({ login, password }));
     navigate('/');
     console.log('Отправляем данные формы');
-    console.log(value);
+
 
     reset();
   };

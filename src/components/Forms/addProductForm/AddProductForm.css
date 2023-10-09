@@ -49,7 +49,7 @@
     background-color: #54b8cd;
     border-color: #54b8cd;
     font-weight: 600;
-    width: 326px;
+    width: 163px;
     letter-spacing: 0;
     text-decoration: none;
     text-align: center;
@@ -155,4 +155,19 @@
 .block {
     width: 326px;
 
+}
+
+.select {
+    width: 326px;
+    height: 3.25rem;
+    padding: 0.75rem;
+    font-family: inherit;
+    font-size: 1.25rem;
+    box-shadow: inset 0 0 5px 5px #888;
+    border-radius: 0.25rem;
+    border: 0;
+}
+.scroll {
+    overflow-y: auto;
+    max-height: 500px;
 }

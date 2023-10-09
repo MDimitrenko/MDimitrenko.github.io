@@ -83,8 +83,9 @@
     "addImages": "Add Images",
     "error": "The field is required to fill in",
     "add": "Add",
-    "selectFile": "Select a file"
-
+    "selectFile": "Select a file",
+    "oldPrice": "Old price",
+    "change": "Change"
   },
   "is_required": "Required field",
   "Authorization": "Sign in",
