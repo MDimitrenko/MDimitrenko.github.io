@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 export interface Production {
-  id: number;
+  id: string;
+  orderId?: string;
   categorySelect: string;
   productionName: string;
   shortDefinition: string;

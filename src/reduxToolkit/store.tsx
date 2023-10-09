@@ -2,13 +2,15 @@ import { configureStore } from '@reduxjs/toolkit';
 import initSlice from './initSlice';
 import thunkMiddleware from 'redux-thunk';
 import basketSlice from './basketSlice';
+import productsReducer from './productsSlice';
 import profile from './profile';
 
 export const store = configureStore({
   reducer: {
     initSlice,
     basketSlice,
-    profile
+    profile,
+    products: productsReducer,
   },
   middleware: [thunkMiddleware],
 });
