@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import './BasketButton.css';
 import cn from 'clsx';
-import { useDispatch } from 'react-redux';
-import { addProduct, Production } from '../../reduxToolkit/basketSlice';
+import axios from 'axios';
+import { Production } from 'src/reduxToolkit/basketSlice';
 
 interface BasketButtonProps {
   text: string;
@@ -10,15 +10,33 @@ interface BasketButtonProps {
   product?: Production;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
-// eslint-disable-next-line react/prop-types
+
 export const BasketButton: FC<BasketButtonProps> = ({ text, className = '', product, onClick }) => {
-  const dispatch = useDispatch();
-  const onClick1 = () => {
-    dispatch(addProduct(product));
+  const token = localStorage.getItem('accessToken');
+  const sendPostRequest = async () => {
+    try {
+      const response = await axios.post(
+        'https://19429ba06ff2.vps.myjino.ru/api/orders',
+        {
+          products: [{ id: product?.id, quantity: 1 }],
+          status: 'pending_confirmation',
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+      console.log('POST answer:', response.data);
+    } catch (error) {
+      console.error('Response error:', error);
+    }
   };
+
   return (
     <div className="basket-button__div">
-      <button className={cn('in-basket', className)} onClick={!onClick ? onClick1 : onClick}>
+      <button className={cn('in-basket', className)} onClick={onClick || sendPostRequest}>
         {text}
       </button>
     </div>

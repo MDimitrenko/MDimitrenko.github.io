@@ -1,9 +1,12 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import './LoginUserForm.css';
-import { useDispatch, useSelector } from 'react-redux';
-import { signIn } from 'src/reduxToolkit/profile';
+import { useDispatch } from 'react-redux';
+import { fetchSignIn, fetchSignUp } from 'src/reduxToolkit/profileThunk';
 import { useNavigate } from 'react-router-dom';
+import { ThunkDispatch } from 'redux-thunk';
+import { AnyAction } from '@reduxjs/toolkit';
+import { SignInBody } from 'src/reduxToolkit/app.types';
 
 interface LoginUserFormProps {
   registration: boolean;
@@ -11,7 +14,8 @@ interface LoginUserFormProps {
 // eslint-disable-next-line react/prop-types
 export const LoginUserForm: FC<LoginUserFormProps> = ({ registration }) => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  type AppDispatch = ThunkDispatch<SignInBody, any, AnyAction>;
+  const dispatch: AppDispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -22,18 +26,20 @@ export const LoginUserForm: FC<LoginUserFormProps> = ({ registration }) => {
     mode: 'onBlur',
   });
   interface FormValues {
-    login: string;
+    email: string;
     password: string;
     confirmPassword: string;
   }
 
   const clickSubmit: SubmitHandler<FormValues> = async (value) => {
-    const { login, password } = value;
-    dispatch(signIn({ login, password }));
+    const { email, password } = value;
+    if (!registration){
+      dispatch(fetchSignIn({ email, password }))
+    }
+    else {
+      dispatch(fetchSignUp({ email, password, commandId:"9ba431c9-7758-4e8d-bf79-6d001569853b" }));
+    }
     navigate('/');
-    console.log('Отправляем данные формы');
-    console.log(value);
-
     reset();
   };
 
@@ -42,16 +48,16 @@ export const LoginUserForm: FC<LoginUserFormProps> = ({ registration }) => {
     <>
       <form onSubmit={handleSubmit(clickSubmit)}>
         <div className="text-field">
-          <label className="text-field__label">Логин*</label>
+          <label className="text-field__label">Email*</label>
           <input
             className="text-field__input"
-            placeholder="Логин"
-            {...register('login', {
+            placeholder="email"
+            {...register('email', {
               required: 'Поле обязательно для заполнения',
             })}
           />
 
-          <label className="text-field__error-label">{errors.login?.message}</label>
+          <label className="text-field__error-label">{errors.email?.message}</label>
 
           <label className="text-field__label">Пароль*</label>
           <input

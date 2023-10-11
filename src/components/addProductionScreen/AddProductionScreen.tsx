@@ -1,17 +1,9 @@
 import React, { FC, useState } from 'react';
-import { AddProductionForm } from '../Forms/addProductionForm/AddProductionForm';
+import { AddProductForm } from '../Forms/addProductForm/AddProductForm';
 import Modal from '../modal/modal';
-import { Product } from '../../reduxToolkit/app.types';
 
 // eslint-disable-next-line react/prop-types
-export const AddProductionScreen: FC<Product> = ({
-  category,
-  productionName,
-  shortDefinition,
-  definition,
-  price,
-  images,
-}) => {
+export const AddProductionScreen: FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const handleCloseModal = () => {
     setIsOpen(false);
@@ -19,14 +11,7 @@ export const AddProductionScreen: FC<Product> = ({
   return (
     <>
       <Modal visible={isOpen} onClose={handleCloseModal}>
-        <AddProductionForm
-          category={category}
-          shortDefinition={shortDefinition}
-          definition={definition}
-          productionName={productionName}
-          price={price}
-          images={images}
-        />
+        <AddProductForm />
       </Modal>
     </>
   );

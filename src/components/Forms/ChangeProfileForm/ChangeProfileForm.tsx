@@ -2,12 +2,15 @@ import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import s from './ChangeProfileForm.module.sass';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'src/reduxToolkit/store';
+import { ThunkDispatch } from 'redux-thunk';
+import { AnyAction } from '@reduxjs/toolkit';
+import { fetchProfileChange } from 'src/reduxToolkit/profileThunk';
+import { UpdateProfileBody } from 'src/reduxToolkit/app.types';
 
-interface СhangeProfileFormProps {
+interface ChangeProfileFormProps {
   name: string;
-  about: string;
 };
 
 const ChangeProfileForm = () => {
@@ -18,22 +21,23 @@ const ChangeProfileForm = () => {
       handleSubmit,
       reset,
       formState: { errors },
-    } = useForm<СhangeProfileFormProps>({mode: 'onBlur'});
+    } = useForm<ChangeProfileFormProps>({mode: 'onBlur'});
 
-    const onСhangePassword: SubmitHandler<СhangeProfileFormProps> = (value): void => {
-      console.log('Отправляем данные формы обновления профиля:');
-      console.log(value);
-      reset();
+    type AppDispatch = ThunkDispatch<UpdateProfileBody, any, AnyAction>;
+    const dispatch: AppDispatch = useDispatch();
+
+    const onChangePassword: SubmitHandler<ChangeProfileFormProps> = (value): void => {
+      var name = value.name
+      dispatch(fetchProfileChange({ name }));
     }
-    const about = useSelector<RootState, string>(state =>state.profile.about);
     const nikename = useSelector<RootState, string>(state =>state.profile.nikename);
     return (
-      <form className={s.form} onSubmit={handleSubmit(onСhangePassword)}>
+      <form className={s.form} onSubmit={handleSubmit(onChangePassword)}>
         <div className={s.title}>{t`ProfileScreen.updateProfile.title`}</div>
         <div className={s.field}>
           <label className={s.label}>{t`ProfileForm.name.title`}</label>
           <input
-            value={nikename}
+            defaultValue={nikename}
             className={s.input_pass}
             name="name"
             type="text"
@@ -41,18 +45,6 @@ const ChangeProfileForm = () => {
             {...register('name', { required: er})}
           />
           <label className={s.error_label}>{errors.name?.message}</label>
-        </div>
-        <div className={s.field}>
-          <label className={s.label}>{t`ProfileForm.about.title`}</label>
-          <input
-            value={about}
-            className={s.input_pass}
-            name="about"
-            type="text"
-            placeholder={t`ProfileForm.about.placeholder`}
-            {...register('about')}
-          />
-          <label className={s.error_label}>{errors.about?.message}</label>
         </div>
         <button className={s.button_send} type="submit">
           {t`ProfileScreen.updateProfile.save`}

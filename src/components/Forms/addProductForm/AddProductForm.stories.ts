@@ -1,9 +1,9 @@
-import { AddProductionForm } from './AddProductionForm';
-import s from './AddProductionForm.module.sass';
+import { AddProductForm } from './AddProductForm';
+import s from './AddProductForm.module.sass';
 
 export default {
-  component: AddProductionForm,
-  title: 'AddProductionForm',
+  component: AddProductForm,
+  title: 'AddProductForm',
   tags: ['autodocs'],
 };
 

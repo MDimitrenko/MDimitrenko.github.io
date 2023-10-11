@@ -1,15 +1,19 @@
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import s from './СhangePasswordForm.module.sass';
+import s from './ChangePasswordForm.module.sass';
 import { useTranslation } from 'react-i18next';
+import { AnyAction, ThunkDispatch } from '@reduxjs/toolkit';
+import { ChangePasswordBody } from 'src/reduxToolkit/app.types';
+import { useDispatch } from 'react-redux';
+import { fetchPasswordChange } from 'src/reduxToolkit/profileThunk';
 
-interface СhangePasswordFormProps {
+interface ChangePasswordFormProps {
     oldPassword: string;
     password: string;
     repeatPassword: string;
 };
 
-const СhangePasswordForm = () => {
+const ChangePasswordForm = () => {
     const { t } = useTranslation();
     const er = t`is_required`
     const { 
@@ -17,15 +21,18 @@ const СhangePasswordForm = () => {
       handleSubmit,
       reset,
       formState: { errors },
-    } = useForm<СhangePasswordFormProps>({mode: 'onBlur'});
-
-    const onСhangePassword: SubmitHandler<СhangePasswordFormProps> = (value): void => {
-      console.log('Отправляем данные формы смены паролы в профиле:');
-      console.log(value);
+    } = useForm<ChangePasswordFormProps>({mode: 'onBlur'});
+    type AppDispatch = ThunkDispatch<ChangePasswordBody, any, AnyAction>;
+    const dispatch: AppDispatch = useDispatch();
+    const onChangePassword: SubmitHandler<ChangePasswordFormProps> = (value): void => {
+      var password = value.oldPassword
+      var newPassword = value.password
+      dispatch(fetchPasswordChange({ password, newPassword }))
+      
       reset();
     }
     return (
-      <form className={s.form} onSubmit={handleSubmit(onСhangePassword)}>
+      <form className={s.form} onSubmit={handleSubmit(onChangePassword)}>
         <div className={s.title}>{t`ProfileScreen.changePassword.title`}</div>
         <div className={s.field}>
           <label className={s.label}>{t`ChangePasswordForm.password.title`}</label>
@@ -66,4 +73,4 @@ const СhangePasswordForm = () => {
       </form>
     )
 }
-export default СhangePasswordForm;
+export default ChangePasswordForm;

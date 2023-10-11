@@ -69,6 +69,7 @@
     "@mui/material": "^5.14.0",
     "@reduxjs/toolkit": "^1.9.5",
     "antd": "^5.7.0",
+    "axios": "^1.5.1",
     "clsx": "^1.2.1",
     "i18next": "^23.2.8",
     "react": "^18.2.0",
