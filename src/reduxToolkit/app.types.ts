@@ -86,3 +86,43 @@ export type CategoryList = {
 export type UploadFile = {
   url: string;
 }
+
+export type SignUpBody = {
+  email: string;
+  password: string;
+  commandId: string;
+};
+
+export type AuthResult = {
+  token: string;
+};
+
+export type SignInBody = {
+  email: string;
+  password: string;
+};
+
+export interface ThunkApi {
+  errorMessage: string;
+  // ...
+}
+
+export type Profile = {
+  id: string;
+  name: string;
+  email: string;
+  signUpDate: Date;
+};
+
+export type UpdateProfileBody = {
+  name: string;
+};
+
+export type ChangePasswordBody = {
+  password: string;
+  newPassword: string;
+};
+
+export type ChangePasswordResult = {
+  success: boolean;
+};

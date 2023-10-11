@@ -3,19 +3,22 @@ import { BrowserRouter } from 'react-router-dom';
 import Layout from './components/Layout/Layout';
 import { ThemeProvider } from './theming';
 import { Navigation } from './navigation';
-import { setProfile } from './reduxToolkit/profile'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'src/reduxToolkit/store';
+import { fetchGetProfile } from './reduxToolkit/profileThunk';
+import { ThunkDispatch } from 'redux-thunk';
+import { AnyAction } from '@reduxjs/toolkit';
 
 function App() {
-  const dispatch = useDispatch()
-  const login = useSelector<RootState, string>((state) => state.profile.login);
+  type AppDispatch = ThunkDispatch<void, any, AnyAction>;
+  const dispatch: AppDispatch = useDispatch();
+  const token = useSelector<RootState, string>((state) => state.profile.token);
   useEffect(()=>{
     const accessToken = localStorage.getItem('accessToken')
     if(accessToken){
-      dispatch(setProfile({login}))
+      dispatch(fetchGetProfile())
     }
-  },[dispatch, login])
+  },[dispatch, token])
 
   return (
     <div className="App">
