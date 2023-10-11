@@ -26,7 +26,7 @@ export const AddProductForm: FC = () => {
 
   const product = useSelector<RootState, Product>((state) => state.productSlice.editProduct);
 
-  const [categoryId, setCategoryId] = useState(product ? product.category.id : undefined);
+  const [categoryId, setCategoryId] = useState(product ? product.category?.id : undefined);
 
   const dispatch: AppDispatch = useDispatch();
   useEffect(() => {
@@ -90,11 +90,14 @@ export const AddProductForm: FC = () => {
       dispatch(fetchAddProductWithImage(newProduct));
     }
     dispatch(setOpenAddProduct(false));
+
+    reset();
   };
   const { t } = useTranslation();
-  const [selectFile, setSelectFile] = useState(product !== null && product.photo !== null);
+
+  const [selectFile, setSelectFile] = useState(product && product.photo !== null);
   const [file, setFile] = useState(undefined);
-  const [url, setUrl] = useState(product !== null ? product.photo : undefined);
+  const [url, setUrl] = useState(product ? product.photo : undefined);
   const onChangeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSelectFile(true);
     setFile(e.target.files[0]);
@@ -175,11 +178,11 @@ export const AddProductForm: FC = () => {
           <div className="block">
             {!selectFile && (
               <>
-                <label className="text-field__label">{t('AddCategoryForm.addImages')}</label>
+                <label className="text-field__label">{t('AddProductForm.addImages')}</label>
 
                 <label className="input-file">
                   <input type="file" accept="image/png, image/jpeg" id="categoryPhoto" onChange={onChangeFile} />
-                  <span>{t('AddCategoryForm.selectFile')}</span>
+                  <span>{t('AddProductForm.selectFile')}</span>
                 </label>
               </>
             )}
